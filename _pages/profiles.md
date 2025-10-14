@@ -1,28 +1,39 @@
 ---
-layout: profiles
+layout: people-grid   # <- we'll create this layout in the next step
 permalink: /people/
 title: people
-description: members of the lab or group
+description: Members of the ARL.
 nav: true
 nav_order: 7
 
 profiles:
-  # if you want to include more than one profile, just replicate the following block
-  # and create one content file for each profile inside _pages/
-  - align: right
-    image: prof_pic.jpg
-    content: about_einstein.md
-    image_circular: false # crops the image to make it circular
-    more_info: >
-      <p>555 your office number</p>
-      <p>123 your address street</p>
-      <p>Your City, State 12345</p>
-  - align: left
-    image: prof_pic.jpg
-    content: about_einstein.md
-    image_circular: false # crops the image to make it circular
-    more_info: >
-      <p>555 your office number</p>
-      <p>123 your address street</p>
-      <p>Your City, State 12345</p>
+  - name: Yifan Zhu
+    role: Principal Investigator
+    section: pi
+    image: yifan.JPG
+    email: yifan16 at uic.edu
+    links:
+      - icon: fas fa-globe
+        url: https://yifanzhu95.github.io
+      - icon: ai ai-google-scholar
+        url: https://scholar.google.com/citations?user=eyWZo6EAAAAJ&hl=en
+    image_circular: false
+
+  - name: Juneil Park
+    role: PhD Student
+    section: grads
+    image: juneil.jpg
+    email: jpark470 at uic.edu
+    links:
+      - icon: ai ai-google-scholar
+        url: https://scholar.google.co.kr/citations?user=FxhPqpwAAAAJ&hl=ko
+
+  - name: Fuquan Wang
+    role: PhD Student
+    section: grads
+    image: fuquan.jpg
+    email: fuqwan49 at uic.edu
+    links:
+      - icon: ai ai-google-scholar
+        url: https://scholar.google.com/citations?user=QVQbZPYAAAAJ&hl=zh-CN
 ---
