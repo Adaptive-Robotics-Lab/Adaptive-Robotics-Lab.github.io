@@ -32,3 +32,5 @@ latest_posts:
 Welcome to the Adaptive Robotics Lab at [UIC](https://cs.uic.edu/)!
 
 We aim to develop fundamental technologies that enable robots to understand their contacts with the external world from proactive interactions and perform meaningful tasks. Our research topics include physics-based perception/world modeling, active learning, and contact-rich manipulation planning. Applications of our research include construction, nursing, healthcare, and scientific exploration.
+
+**Prospective students**: Please see the [prosective student page]({{'/prospective'| relative_url }}) for more information.
