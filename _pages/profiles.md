@@ -1,5 +1,5 @@
 ---
-layout: people-grid   # <- we'll create this layout in the next step
+layout: people-grid # <- we'll create this layout in the next step
 permalink: /people/
 title: people
 description: Members of the ARL.
