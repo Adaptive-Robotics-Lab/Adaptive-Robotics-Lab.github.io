@@ -1,5 +1,5 @@
 ---
-layout: people-grid   # <- we'll create this layout in the next step
+layout: people-grid # <- we'll create this layout in the next step
 permalink: /people/
 title: people
 description: Members of the ARL.
@@ -37,5 +37,5 @@ profiles:
       - icon: fas fa-globe
         url: https://wangfuquan0905.github.io/
       - icon: ai ai-google-scholar
-        url: https://scholar.google.com/citations?user=QVQbZPYAAAAJ&hl=zh-CN
+        url: https://scholar.google.com/citations?user=QVQbZPYAAAAJ&hl=en
 ---
