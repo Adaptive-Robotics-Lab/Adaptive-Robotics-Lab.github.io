@@ -303,6 +303,29 @@ ul.task-list input[type="checkbox"] {
     z-index: 2;
     font-size: 1.1rem;
     line-height: 1;
+
+    a {
+      position: relative;
+      text-decoration: none;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        bottom: -0.35rem;
+        left: 0;
+        height: 2px;
+        content: "";
+        background-color: currentColor;
+        border-radius: 1px;
+        transform: scaleX(0);
+        transition: transform 0.15s ease;
+      }
+
+      &:focus::after,
+      &:hover::after {
+        transform: scaleX(1);
+      }
+    }
   }
 
   .person-email-unavailable {
