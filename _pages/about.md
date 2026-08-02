@@ -26,7 +26,7 @@ latest_posts:
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
-<img src="/assets/img/main_pic.png" alt="Adaptive Robotics Lab" style="width:40%; height:auto; margin-bottom:20px; border-radius:10px;">
+<img src="/assets/img/main_pic.svg" alt="Adaptive Robotics Lab" style="width:40%; height:auto; margin-bottom:20px; border-radius:10px;">
 
 
 Welcome to the Adaptive Robotics Lab at [UIC](https://cs.uic.edu/)!
