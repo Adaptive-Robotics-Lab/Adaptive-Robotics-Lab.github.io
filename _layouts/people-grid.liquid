@@ -2,80 +2,69 @@
 layout: default
 ---
 
-<div class="container my-4">
-  <h1 class="mb-4">{{ page.title | default: "People" }}</h1>
+<div class="people-grid my-4">
+  {% unless page.show_page_title == false %}
+    <h1 class="mb-4">{{ page.title | default: "People" }}</h1>
+  {% endunless %}
 
-  {%- assign pi = page.profiles | where: "section", "pi" -%}
-  {%- if pi and pi.size > 0 -%}
-  <section class="mb-5">
-    <h2 class="h4 text-center mb-3">Principal Investigator</h2>
-    <div class="d-flex justify-content-center">
-      {%- assign p = pi[0] -%}
-      <div class="card person-card text-center" style="max-width: 200px;">
-        <img
-          class="card-img-top person-photo"
-          src="{{ '/assets/img/' | append: p.image | relative_url }}"
-          alt="{{ p.name | escape }}"
-        >
-        <div class="card-body">
-          <h3 class="h5 mb-1">{{ p.name }}</h3>
-          <div class="text-muted mb-2">{{ p.role }}</div>
-          {%- if p.email -%}
-            <div class="mb-2">
-              <a href="mailto:{{ p.email | escape }}">{{ p.email }}</a>
-            </div>
-          {%- endif -%}
-          {%- if p.links and p.links.size > 0 -%}
-          <div class="person-links d-flex justify-content-center gap-3">
-            {%- for l in p.links -%}
-              <a href="{{ l.url }}" target="_blank" rel="noopener">
-                <i class="{{ l.icon }}"></i>
-              </a>
-            {%- endfor -%}
-          </div>
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-  </section>
-  {%- endif -%}
+  {% assign people_sections = "pi|Principal Investigator,phd|PhD Students,ms_undergraduate|MS/Undergraduate Students,visiting|Visiting Scholar/Students,alumni|Alumni" | split: "," %}
+  {% for section in people_sections %}
+    {% assign section_parts = section | split: "|" %}
+    {% assign section_key = section_parts[0] %}
+    {% assign section_title = section_parts[1] %}
+    {% if section_key == 'ms_undergraduate' %}
+      {% assign masters = page.profiles | where: "section", "masters" %}
+      {% assign undergraduates = page.profiles | where: "section", "undergraduate" %}
+      {% assign combined_students = page.profiles | where: "section", "ms_undergraduate" %}
+      {% assign members = masters | concat: undergraduates | concat: combined_students %}
+    {% else %}
+      {% assign members = page.profiles | where: "section", section_key %}
+    {% endif %}
 
-  {%- assign grads = page.profiles | where: "section", "grads" -%}
-  {%- if grads and grads.size > 0 -%}
-  <section class="mb-4">
-    <h2 class="h4 mb-3">Students</h2>
-    <!-- 5 per row on large screens; auto-wrap on smaller -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
-      {%- for p in grads -%}
-      <div class="col">
-        <div class="card person-card h-100 text-center">
-          <img
-            class="card-img-top person-photo"
-            src="{{ '/assets/img/' | append: p.image | relative_url }}"
-            alt="{{ p.name | escape }}"
-          >
-          <div class="card-body d-flex flex-column">
-            <h3 class="h6 mb-1">{{ p.name }}</h3>
-            <div class="text-muted mb-2">{{ p.role }}</div>
-            {%- if p.email -%}
-              <div class="mb-2">
-                <a href="mailto:{{ p.email | escape }}">{{ p.email }}</a>
+    {% if members.size > 0 %}
+      <section class="people-section mb-5">
+        <h2 class="h4 mb-3">{{ section_title }}</h2>
+
+        <div class="row">
+          {% for p in members %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+              <div class="card person-card text-center">
+                {% assign website = p.links | where: "icon", "fas fa-globe" | first %}
+                {% assign scholar = p.links | where: "icon", "ai ai-google-scholar" | first %}
+                {% if website %}
+                  <a class="person-card-primary" href="{{ website.url }}" target="_blank" rel="noopener" aria-label="Visit {{ p.name | escape }}'s website"></a>
+                {% elsif scholar %}
+                  <a class="person-card-primary" href="{{ scholar.url }}" target="_blank" rel="noopener" aria-label="View {{ p.name | escape }}'s Google Scholar profile"></a>
+                {% elsif p.email %}
+                  <a class="person-card-primary" href="mailto:{{ p.email | escape }}" aria-label="Email {{ p.name | escape }}"></a>
+                {% endif %}
+                <div class="person-photo-frame">
+                  <img
+                    class="card-img-top person-photo"
+                    src="{{ '/assets/img/' | append: p.image | relative_url }}"
+                    alt="{{ p.name | escape }}"
+                  >
+                </div>
+                <div class="card-body">
+                  <h3 class="person-name{% if p.name.size > 18 %} person-name--compact{% endif %} mb-0">{{ p.name }}</h3>
+                  <div class="person-links d-flex justify-content-center mt-2">
+                    {% if p.email %}
+                      <a class="mx-2" href="mailto:{{ p.email | escape }}" aria-label="Email {{ p.name | escape }}" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                      </a>
+                    {% endif %}
+                    {% for l in p.links %}
+                      <a class="mx-2" href="{{ l.url }}" target="_blank" rel="noopener">
+                        <i class="{{ l.icon }}"></i>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
               </div>
-            {%- endif -%}
-            {%- if p.links and p.links.size > 0 -%}
-            <div class="mt-auto person-links d-flex justify-content-center gap-3">
-              {%- for l in p.links -%}
-                <a href="{{ l.url }}" target="_blank" rel="noopener">
-                  <i class="{{ l.icon }}"></i>
-                </a>
-              {%- endfor -%}
             </div>
-            {%- endif -%}
-          </div>
+          {% endfor %}
         </div>
-      </div>
-      {%- endfor -%}
-    </div>
-  </section>
-  {%- endif -%}
+      </section>
+    {% endif %}
+  {% endfor %}
 </div>
