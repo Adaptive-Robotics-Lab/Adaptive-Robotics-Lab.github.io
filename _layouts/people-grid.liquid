@@ -52,6 +52,10 @@ layout: default
                       <a class="mx-2" href="mailto:{{ p.email | escape }}" aria-label="Email {{ p.name | escape }}" title="Email">
                         <i class="fa-solid fa-envelope"></i>
                       </a>
+                    {% else %}
+                      <span class="mx-2 person-email-unavailable" role="img" aria-label="Email unavailable" title="Email unavailable">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                      </span>
                     {% endif %}
                     {% for l in p.links %}
                       <a class="mx-2" href="{{ l.url }}" target="_blank" rel="noopener">

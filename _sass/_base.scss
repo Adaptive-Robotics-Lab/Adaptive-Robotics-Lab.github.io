@@ -304,6 +304,10 @@ ul.task-list input[type="checkbox"] {
     font-size: 1.1rem;
     line-height: 1;
   }
+
+  .person-email-unavailable {
+    color: var(--global-theme-color);
+  }
 }
 
 // Navbar customization
