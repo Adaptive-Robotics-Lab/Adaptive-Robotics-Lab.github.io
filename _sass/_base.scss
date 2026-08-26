@@ -242,6 +242,18 @@ ul.task-list input[type="checkbox"] {
 }
 
 .people-grid {
+  .people-group-photo {
+    overflow: hidden;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.5rem;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
   .person-card {
     position: relative;
     width: 100%;

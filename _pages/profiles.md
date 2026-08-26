@@ -6,6 +6,8 @@ description: Members of the ARL.
 nav: true
 nav_order: 3
 show_page_title: false
+group_photo: lab_members.jpg
+group_photo_alt: Adaptive Robotics Lab members gathered at the UIC campus sign
 
 profiles:
   # Available sections: pi, phd, ms_undergraduate, masters, undergraduate, visiting, alumni.

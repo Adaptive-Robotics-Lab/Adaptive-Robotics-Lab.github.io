@@ -7,6 +7,17 @@ layout: default
     <h1 class="mb-4">{{ page.title | default: "People" }}</h1>
   {% endunless %}
 
+  {% if page.group_photo %}
+    <figure class="people-group-photo mb-5">
+      <img
+        src="{{ '/assets/img/' | append: page.group_photo | relative_url }}"
+        alt="{{ page.group_photo_alt | default: 'Adaptive Robotics Lab members' | escape }}"
+        width="1800"
+        height="1200"
+      >
+    </figure>
+  {% endif %}
+
   {% assign people_sections = "pi|Principal Investigator,phd|PhD Students,ms_undergraduate|MS/Undergraduate Students,visiting|Visiting Scholar/Students,alumni|Alumni" | split: "," %}
   {% for section in people_sections %}
     {% assign section_parts = section | split: "|" %}
