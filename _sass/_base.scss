@@ -345,6 +345,63 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+// Lab photo gallery
+
+.lab-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+
+  > figure {
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.14);
+      transform: translateY(-2px);
+    }
+
+    &:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      width: calc(50% - 0.5rem);
+      justify-self: center;
+    }
+
+    picture {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .lab-gallery-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: zoom-in;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .lab-gallery {
+    grid-template-columns: 1fr;
+
+    > figure:last-child:nth-child(odd) {
+      grid-column: auto;
+      width: 100%;
+    }
+  }
+}
+
 // Navbar customization
 
 .navbar {

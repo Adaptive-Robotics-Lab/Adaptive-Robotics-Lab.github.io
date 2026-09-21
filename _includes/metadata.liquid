@@ -44,6 +44,39 @@
   <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
 {% endif %}
 
+{% if page.url == '/' %}
+  <!-- Identify the website and lab for search engines. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": {{ '/' | absolute_url | append: '#website' | jsonify }},
+          "url": {{ '/' | absolute_url | jsonify }},
+          "name": {{ site.title | jsonify }},
+          "alternateName": "Adaptive Robotics Lab at UIC",
+          "description": {{ page.description | default: site.description | jsonify }}
+        },
+        {
+          "@type": "ResearchOrganization",
+          "@id": {{ '/' | absolute_url | append: '#organization' | jsonify }},
+          "name": {{ site.title | jsonify }},
+          "alternateName": "Adaptive Robotics Lab at UIC",
+          "url": {{ '/' | absolute_url | jsonify }},
+          "logo": {{ '/assets/img/main_pic.svg' | absolute_url | jsonify }},
+          "parentOrganization": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Illinois Chicago",
+            "alternateName": "UIC",
+            "url": "https://www.uic.edu/"
+          }
+        }
+      ]
+    }
+  </script>
+{% endif %}
+
 {% assign is_blog_post = false %}
 {% if page.url != '/blog/index.html' and page.url contains '/blog/' %}
   {% unless page.url contains '/tag/' or page.url contains '/category/' %}
