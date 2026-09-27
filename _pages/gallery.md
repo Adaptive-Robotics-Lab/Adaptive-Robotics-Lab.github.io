@@ -17,6 +17,8 @@ gallery:
     alt: Lab members at Korean barbecue
   - image: IMG_7386.jpg
     alt: Lab dinner gathering around hot pot
+  - image: IMG_2609.png
+    alt: Lab members enjoying dinner together
 ---
 
 <div class="lab-gallery" aria-label="Adaptive Robotics Lab photo gallery">
